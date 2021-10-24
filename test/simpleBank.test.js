@@ -76,8 +76,8 @@ contract("SimpleBank", function (accounts) {
 
     const expectedEventResult = { accountAddress: alice, amount: deposit };
 
-    const logAccountAddress = result.logs[0].args.accountAddress;
-    const logDepositAmount = result.logs[0].args.amount.toNumber();
+    const logAccountAddress = result.logs[1].args.accountAddress;
+    const logDepositAmount = result.logs[1].args.amount.toNumber();
 
     assert.equal(
       expectedEventResult.accountAddress,
@@ -118,9 +118,9 @@ contract("SimpleBank", function (accounts) {
     await instance.deposit({ from: alice, value: deposit });
     var result = await instance.withdraw(deposit, { from: alice });
 
-    const accountAddress = result.logs[0].args.accountAddress;
-    const newBalance = result.logs[0].args.newBalance.toNumber();
-    const withdrawAmount = result.logs[0].args.withdrawAmount.toNumber();
+    const accountAddress = result.logs[1].args.accountAddress;
+    const newBalance = result.logs[1].args.newBalance.toNumber();
+    const withdrawAmount = result.logs[1].args.withdrawAmount.toNumber();
 
     const expectedEventResult = {
       accountAddress: alice,
