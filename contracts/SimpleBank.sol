@@ -107,7 +107,7 @@ contract SimpleBank {
 	// 2. Transfer Eth to the sender and decrement the withdrawal amount from
 	//    sender's balance
 	balances[msg.sender] -= withdrawAmount;
-	(bool sent, bytes memory data) = payable(msg.sender).call{value: withdrawAmount}("");
+	(bool sent, ) = payable(msg.sender).call{value: withdrawAmount}("");
 	require(sent, "Failed to send Ether");
 	// 3. Emit the appropriate event for this message
 	emit LogWithdrawal(msg.sender, withdrawAmount, balances[msg.sender]);
